@@ -1,0 +1,30 @@
+# simulates obstacle detection using ultrasonic sensor data
+
+import time
+import random
+
+# Simulate getting distance from an ultrasonic sensor (in cm)
+# Simulate a random distance between 2cm and 100cm
+def get_distance():
+    return random.uniform(2.0, 100.0)
+
+# Decide movement based on distance
+def decide_movement(distance):
+    if distance < 10:
+        return "STOP - Obstacle very close!"
+    elif distance < 30:
+        return "TURN - Obstacle detected nearby"
+    else:
+        return "MOVE FORWARD - Path is clear"
+
+def main():
+    print("Autonomous Obstacle Detection Started...")
+    for _ in range(20):  # Simulate 20 readings
+        distance = get_distance()
+        movement = decide_movement(distance)
+        print(f"Distance: {distance:.2f} cm --> Action: {movement}")
+        time.sleep(0.5)  # simulate time between sensor readings
+    print("Simulation ended.")
+
+if __name__ == "__main__":
+    main()
